@@ -14,6 +14,13 @@ app.get('/',(req,res) =>{
     })
 });
 
+app.get('/edit/:id',(req,res) =>{
+    User.find({_id:req.params.id}).then((data)=>{
+        res.json(data);
+    })
+});
+
+
 app.post('/api',jsonParser,(req,res) =>{
    const data=User({
        name:req.body.name,
