@@ -2,16 +2,21 @@ const express= require('express');
 const app =express();
 const DB = require("./config/database");
 const User=require("./user");
+var cors = require('cors');
 var bodyParser=require("body-parser");
 var jsonParser=bodyParser.json();
 
 require("dotenv").config();
 DB();
+app.use(cors());
 
 app.get('/',(req,res) =>{
     User.find().then((data)=>{
         res.json(data);
     })
+});
+app.get('/a',(req,res) =>{
+    res.status(200).json({ message: "Question Registered" });
 });
 
 app.get('/edit/:id',(req,res) =>{
