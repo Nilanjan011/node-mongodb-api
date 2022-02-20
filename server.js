@@ -43,6 +43,15 @@ app.delete('/api/:id',(req,res) =>{
         res.json(result)
     }).catch(err => console.log(err))
 });
+
+// delete multiple records useing the name
+app.delete('/api/name/:name',(req,res) =>{
+    User.deleteMany({name:req.params.name}).then((result)=>{
+        res.json(result.deletedCount)
+    }).catch(err => console.log(err))
+});
+
+
 app.put('/api/:id',jsonParser,(req,res) =>{
     User.updateOne(
         {_id:req.params.id},
